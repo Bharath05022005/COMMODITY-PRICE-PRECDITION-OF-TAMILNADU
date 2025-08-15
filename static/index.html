@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANDAM VILAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+    
+</head>
+<body>
+    <header class="header">
+        <button class="tab-button actives" onclick="openTab(event, 'about')"><i class="fas fa-home"></i> Home</button>
+        <button class="tab-button" onclick="openTab(event, 'insight')"><i class="fas fa-chart-line"></i> Insights</button>
+        <button class="tab-button" onclick="openTab(event, 'prediction')"><i class="fas fa-chart-bar"></i> Prediction</button>
+        <button class="tab-button" onclick="openDashboard()"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+        <button class="tab-button" onclick="openTab(event, 'download')"><i class="fas fa-download"></i> Download</button>
+        <h2 style="margin: 0; text-align: center; flex-grow: 1;">PANDAM VILAI</h2>
+        <div class="account-menu" id="account-menu" style="margin-left: auto; position: relative;">
+            <div id="account-username" style="color: white; font-weight: bold; margin-right: 10px; align-self: center; display: none;"></div>
+            <img src="https://cdn-icons-png.flaticon.com/128/9069/9069049.png" alt="Account Logo" id="account-logo" style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+            <div id="account-dropdown" style="display: none; position: absolute; right: 0; top: 50px; background: white; color: black; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); min-width: 100px; z-index: 100;">
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    <li>
+                        <button onclick="openTab(event, 'login')" style="padding: 10px; cursor: pointer; border-bottom: 1px solid #ddd; color: black; width: 100%; text-align: left; background: none; border: none;">
+                          Login
+                        </button>
+                      </li>
+                      <li>
+                        <button id="logout-btn" onclick="logout()" style="padding: 10px; cursor: pointer; border-bottom: 1px solid #ddd; color: black; width: 100%; text-align: left; background: none; border: none;">
+                          Logout
+                        </button>
+                      </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="content">
+        <section id="login" class="tab-content">
+            <div class="container">
+                <div class="form-box">
+                    <h2 id="form-title">Login</h2>
+                    <form id="auth-form">
+                        <input type="text" id="username" placeholder="Username" required>
+                        <input type="email" id="email" placeholder="Email" class="hidden">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="submit" id="submit-btn">Login</button>
+                        <h3 id="toggle-form">Don't have an account? <a href="#">Sign up</a></h3>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="tab-content active">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1><i class="fas fa-seedling"></i> Welcome to PANDAM VILAI</h1>
+                <p style="font-size: x-large; color: #059669;">Empowering Agriculture with Predictive Market Intelligence</p>
+            </div>
+            
+            <div class="sub-tab-content1 active">
+                <h1><i class="fas fa-info-circle"></i> About PANDAM VILAI</h1>
+                <p style="font-size: large; text-indent: 30px; text-align: justify;">PANDAM VILAI is a cutting-edge agricultural market intelligence platform that delivers accurate price predictions for agri-horticultural commodities, 
+                    empowering farmers, traders, policymakers, and consumers with the tools needed for smarter, data-driven decisions. By forecasting prices up to 10 weeks in advance, our platform transforms agricultural commerce through predictive analytics and intuitive design.</p>
+            </div>
+            
+            <div class="sub-tab-content1 active">
+                <h1><i class="fas fa-gifts"></i> What We Offer</h1>
+            
+                <div class="feature-card">
+                    <img src="static/content/a_prediction_resized.jpg" alt="Prediction Image" style="width: 40%; border-radius: 10px;">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="feature-content">
+                        <h3>Advanced Price Predictions</h3>
+                        <p>Leverages machine learning models to analyze historical data and forecast commodity prices up to 10 weeks ahead.</p>
+                        <button class="tab-button blue" onclick="openTab(event, 'prediction')">Try Prediction <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            
+                <div class="feature-card">
+                    <img src="static/content/insight.jpg" alt="Insight Image" style="width:40%; border-radius: 10px;">
+                    <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="feature-content">
+                        <h3>Comprehensive Market Insights</h3>
+                        <p>Provides detailed information on various pulses and vegetables, including their varieties, scientific names, growing seasons, and nutritional values.</p>
+                        <button class="tab-button blue" onclick="openTab(event, 'insight')">Explore Insights <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            
+                <div class="feature-card">
+                    <img src="static/content/dashboard.jpg" alt="Dashboard Image" style="width:40%; border-radius: 10px;">
+                    <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="feature-content">
+                        <h3>Interactive Dashboard</h3>
+                        <p>Explore trends through dynamic charts, district-wise price comparisons, and visual future price projections.</p>
+                        <button class="tab-button blue" onclick="openDashboard()">Open Dashboard <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="sub-tab-content1 active">
+                <h1><i class="fas fa-bullseye"></i> Our Mission</h1>
+                <p style="font-size: large; text-indent: 30px; text-align: justify;">To reduce market uncertainties and enhance decision-making in agricultural commerce through accurate price forecasting and comprehensive market analysis.</p>
+                <div class="mission-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Weeks of Advanced Prediction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Varieties Analyzed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Accuracy Rate</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insight" class="tab-content">
+            <h1 style="text-align: center;">Market trends and analysis for pulses and vegetables.</h1>
+            <div class="sub-tabs" style="text-align: center;">
+                <button class="sub-tab-button active" onclick="openSubTab(event, 'pulses')">Pulses (Category & Variety)</button>
+                <button class="sub-tab-button" onclick="openSubTab(event, 'vegetables')">Vegetables (Category & Variety)</button>
+            </div>
+            <div id="pulses" class="sub-tab-content active">
+                <h3>Pulses  <button class="sub-tab-button" onclick="openSubTab(event, 'pulses-details')">Details about the Pulses</button></h3>
+                <table>
+                    <tr>
+                        <th>Category</th>
+                        <th>Variety</th>
+                    </tr>
+                    <tr><td rowspan="5">Lentils</td><td>Toor Dal (Pigeon Pea / Thuvaram Paruppu)</td></tr>
+                    <tr><td>Moong Dal (Green Gram / Payatham Paruppu)</td></tr>
+                    <tr><td>Urad Dal (Black Gram / Ulundhu Paruppu)</td></tr>
+                    <tr><td>Masoor Dal (Red Lentil / Mysore Paruppu)</td></tr>
+                    <tr><td>Horse Gram (Kollu Paruppu)</td></tr>
+                    <tr><td rowspan="4">Beans</td><td>Kidney Beans (Rajma)</td></tr>
+                    <tr><td>Moth Beans (Matki)</td></tr>
+                    <tr><td>Black Gram Beans (Karuppu Ulundhu)</td></tr>
+                    <tr><td>Broad Beans (Avarai Kottai)</td></tr>
+                    <tr><td rowspan="4">Peas</td><td>Green Peas (Pachai Pattani)</td></tr>
+                    <tr><td>Yellow Peas (Manjal Pattani)</td></tr>
+                    <tr><td>Black-Eyed Peas (Thatta Payaru)</td></tr>
+                    <tr><td>Bambara Peas (Mochai Kottai)</td></tr>
+                </table>
+            </div>
+            <div id="pulses-details" class="sub-tab-content">
+                <h2 style="text-align: center;">Details about the Pulses</h2>
+        
+                <h2 style="text-align: center;">Lentils</h2>
+                <table>
+                    <tr>
+                        <th>Name</th><th>Common Name</th><th>Scientific Name</th><th>Season</th><th>Temperature</th><th>Nutritional Value</th><th>Uses</th>
+                    </tr>
+                    <tr><td>Toor Dal</td><td>Pigeon Pea</td><td>Cajanus cajan</td><td>Kharif</td><td>18-30°C</td><td>Protein: 22g, Fiber: 15g, Iron: 6.5mg</td><td>Sambar, Dal</td></tr>
+                    <tr><td>Moong Dal</td><td>Green Gram</td><td>Vigna radiata</td><td>Kharif & Summer</td><td>25-35°C</td><td>Protein: 24g, Fiber: 16g, Calcium: 132mg</td><td>Sprouts, Dal</td></tr>
+                    <tr><td>Urad Dal</td><td>Black Gram</td><td>Vigna mungo</td><td>Kharif</td><td>20-30°C</td><td>Protein: 25g, Fiber: 18g, Iron: 7mg</td><td>Idli, Dosa</td></tr>
+                    <tr><td>Masoor Dal</td><td>Red Lentil</td><td>Lens culinaris</td><td>Rabi (October-November)</td><td>15-25°C</td><td>Protein: 25g, Fiber: 15g, Potassium: 450mg</td><td>Soups, Dal, Curries</td></tr>
+                    <tr><td>Horse Gram</td><td>Kollu Paruppu</td><td>Macrotyloma uniflorum</td><td>Rabi & Summer</td><td>20-30°C</td><td>Protein: 22g, Fiber: 10g, Iron: 7mg</td><td>Kollu Rasam, Sprouts</td></tr>
+                </table>
+
+                <h2 style="text-align: center;">Beans</h2>
+                <table>
+                    <tr>
+                        <th>Name</th><th>Common Name</th><th>Scientific Name</th><th>Season</th><th>Temperature</th><th>Nutritional Value</th><th>Uses</th>
+                    </tr>
+                    <tr><td>Kidney Beans</td><td>Rajma</td><td>Phaseolus vulgaris</td><td>Rabi</td><td>15-25°C</td><td>Protein: 24g, Fiber: 25g, Iron: 8mg</td><td>Rajma Masala</td></tr>
+                    <tr><td>Moth Beans</td><td>Matki</td><td>Vigna aconitifolia</td><td>Kharif</td><td>25-35°C</td><td>Protein: 23g, Fiber: 16g, Calcium: 120mg</td><td>Sprouts, Dal</td></tr>
+                    <tr><td>Black Gram Beans</td><td>Karuppu Ulundhu</td><td>Vigna mungo</td><td>Kharif</td><td>20-30°C</td><td>Protein: 25g, Fiber: 18g, Iron: 7mg</td><td>Idli, Dosa, Papad</td></tr>
+                    <tr><td>Broad Beans</td><td>Avarai Kottai</td><td>Vicia faba</td><td>Rabi & Kharif</td><td>15-25°C</td><td>Protein: 26g, Fiber: 10g, Iron: 6mg</td><td>Stir-Fry, Curries</td></tr>
+                </table>
+
+                <h2 style="text-align: center;">Peas</h2>
+                <table>
+                    <tr>
+                        <th>Name</th><th>Common Name</th><th>Scientific Name</th><th>Season</th><th>Temperature</th><th>Nutritional Value</th><th>Uses</th>
+                    </tr>
+                    <tr><td>Green Peas</td><td>Pachai Pattani</td><td>Pisum sativum</td><td>Rabi</td><td>10-20°C</td><td>Protein: 5g, Fiber: 7g, Vitamin C: 40mg</td><td>Soups, Snacks</td></tr>
+                    <tr><td>Yellow Peas</td><td>Manjal Pattani</td><td>Pisum sativum</td><td>Rabi</td><td>10-20°C</td><td>Protein: 6g, Fiber: 10g, Iron: 3mg</td><td>Dal, Flour</td></tr>
+                    <tr><td>Black-Eyed Peas</td><td>Thatta Payaru</td><td>Vigna unguiculata</td><td>Kharif & Rabi</td><td>20-30°C</td><td>Protein: 23g, Fiber: 10g, Iron: 8mg</td><td>Curries, Sprouts</td></tr>
+                    <tr><td>Bambara Peas</td><td>Mochai Kottai</td><td>Vigna subterranea</td><td>Kharif</td><td>25-35°C</td><td>Protein: 24g, Fiber: 12g, Calcium: 110mg</td><td>Soups, Roasted Snacks</td></tr>
+                </table>
+            </div>
+            <div id="vegetables" class="sub-tab-content">
+                <h3>Vegetables  <button class="sub-tab-button" onclick="openSubTab(event, 'vegetables-details')">Details about the Vegetables</button></h3> 
+                <table>
+                    <tr>
+                        <th>Category</th>
+                        <th>Variety</th>
+                    </tr>
+                    <tr><td rowspan="3">Leafy Greens</td><td>Spinach (Palak)</td></tr>
+                    <tr><td>Mustard Greens (Sarson)</td></tr>
+                    <tr><td>Fenugreek (Methi)</td></tr>
+                    <tr><td rowspan="3">Root Vegetables</td><td>Carrot (Gajar)</td></tr>
+                    <tr><td>Beetroot (Chukandar)</td></tr>
+                    <tr><td>Radish (Muli)</td></tr>
+                    <tr><td rowspan="3">Fruiting Vegetables</td><td>Tomato (Tamatar)</td></tr>
+                    <tr><td>Brinjal (Baingan)</td></tr>
+                    <tr><td>Capsicum (Shimla Mirch)</td></tr>
+                    <tr><td rowspan="3">Cruciferous Vegetables</td><td>Cabbage (Patta Gobhi)</td></tr>
+                    <tr><td>Cauliflower (Phool Gobhi)</td></tr>
+                    <tr><td>Broccoli</td></tr>
+                </table>
+            </div>
+            
+            <div id="vegetables-details" class="sub-tab-content">
+                <h2 style="text-align: center;">Details about the Vegetables</h2>
+
+                <h2 style="text-align: center;">Leafy Greens</h2>
+                <table>
+                    <tr>
+                        <th>Name</th><th>Common Name</th><th>Scientific Name</th><th>Season</th><th>Temperature</th><th>Nutritional Value</th><th>Uses</th>
+                    </tr>
+                    <tr><td>Spinach</td><td>Palak</td><td>Spinacia oleracea</td><td>Winter</td><td>15-20°C</td><td>Vitamin A, Iron</td><td>Salads, Curries</td></tr>
+                    <tr><td>Mustard Greens</td><td>Sarson</td><td>Brassica juncea</td><td>Winter</td><td>10-20°C</td><td>Vitamins K, C</td><td>Saag, Salads</td></tr>
+                    <tr><td>Fenugreek</td><td>Methi</td><td>Trigonella foenum-graecum</td><td>Winter</td><td>15-25°C</td><td>Iron, Calcium</td><td>Curries, Parathas</td></tr>
+                </table>
+            
+                <h2 style="text-align: center;">Root Vegetables</h2>
+                <table>
+                    <tr>
+                        <th>Name</th><th>Common Name</th><th>Scientific Name</th><th>Season</th><th>Temperature</th><th>Nutritional Value</th><th>Uses</th>
+                    </tr>
+                    <tr><td>Carrot</td><td>Gajar</td><td>Daucus carota</td><td>Winter</td><td>15-20°C</td><td>Vitamin A, Fiber</td><td>Salads, Soups</td></tr>
+                    <tr><td>Beetroot</td><td>Chukandar</td><td>Beta vulgaris</td><td>Winter</td><td>10-20°C</td><td>Folate, Manganese</td><td>Salads, Juices</td></tr>
+                    <tr><td>Radish</td><td>Muli</td><td>Raphanus sativus</td><td>Winter</td><td>10-20°C</td><td>Vitamin C, Potassium</td><td>Salads, Pickles</td></tr>
+                </table>
+            
+                <h2 style="text-align: center;">Fruiting Vegetables</h2>
+                <table>
+                    <tr>
+                        <th>Name</th><th>Common Name</th><th>Scientific Name</th><th>Season</th><th>Temperature</th><th>Nutritional Value</th><th>Uses</th>
+                    </tr>
+                    <tr><td>Tomato</td><td>Tamatar</td><td>Solanum lycopersicum</td><td>Summer</td><td>20-30°C</td><td>Vitamin C, Potassium</td><td>Salads, Sauces</td></tr>
+                    <tr><td>Brinjal</td><td>Baingan</td><td>Solanum melongena</td><td>Summer</td><td>20-30°C</td><td>Fiber, Vitamins B1, B6</td><td>Curries, Grilled</td></tr>
+                    <tr><td>Capsicum</td><td>Shimla Mirch</td><td>Capsicum annuum</td><td>Summer</td><td>20-30°C</td><td>Vitamin C, Antioxidants</td><td>Salads, Stir-Fry</td></tr>
+                </table>
+            </div>
+        </section>
+        <section id="prediction" class="tab-content">
+            <div class="header-image-container">
+                <img src="/static/content/prediction_page.png" class="header-image" style="width: 100%; height: auto; object-fit: cover;"
+                     alt="Horticultural Crops" class="header-image">
+                
+                <div class="overlay-content">
+                    <h1>Commodity Price Prediction</h1>
+
+                    <div>
+                        <label for="category">Select Category:</label>
+                        <select id="category">
+                            <option value="">--Select--</option>
+                            <option value="pulses">Pulses</option>
+                            <option value="vegetables">Vegetables</option>
+                        </select>
+                    </div>
+
+                    <div id="variety-section" style="display: none; margin-top: 20px;">
+                        <label for="variety">Select Variety:</label>
+                        <select id="variety"></select>
+                        <button id="getPrediction" aria-label="Get Prediction">Get Prediction</button>
+                    </div>
+
+                    <div id="predictions" style="text-align: left; margin-top: 20px;">
+                        <h3>Weekly Predictions:</h3>
+
+                        <!-- Replace your current canvas with this structure -->
+                        <div class="chart-container">
+                            <canvas id="predictionChart"></canvas>
+                                </div>
+                        <table id="predictionTable">
+                            <tr>
+                                <th>Date</th>
+                                <th>Min Price</th>
+                                <th>Max Price</th>
+                                <th>Predicted Modal Price</th>
+                                <th>Price Per kg</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Download section will be dynamically loaded here -->
+        <section id="download" class="tab-content ">
+            <div class="download-container">
+                <h1 class="section-title"><i class="fas fa-download"></i> Download Market Data</h1>
+                <p>Filter and download agricultural market data based on your specific requirements.</p>
+                
+                <form id="download-form" action="/download" method="GET">
+                    <h3><i class="fas fa-filter"></i> Filter Options</h3>
+                    
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label for="state">State:</label>
+                            <select id="state" name="state">
+                                <option value="">All States</option>
+                                <!-- States will be loaded dynamically -->
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="district">District:</label>
+                            <select id="district" name="district">
+                                <option value="">All Districts</option>
+                                <!-- Districts will be loaded dynamically based on state -->
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="commodity">Commodity:</label>
+                            <select id="commodity" name="commodity">
+                                <option value="">All Commodities</option>
+                                <optgroup label="Pulses">
+                                    <option value="Arhar (Tur/Red Gram)(Whole)">Arhar (Tur/Red Gram)(Whole)</option>
+                                    <option value="Bengal Gram (Gram)(Whole)">Bengal Gram (Gram)(Whole)</option>
+                                    <option value="Bengal Gram Dal (Chana Dal)">Bengal Gram Dal (Chana Dal)</option>
+                                    <option value="Black Gram (Urd Beans)(Whole)">Black Gram (Urd Beans)(Whole)</option>
+                                    <option value="Black Gram Dal (Urd Dal)">Black Gram Dal (Urd Dal)</option>
+                                    <option value="Green Gram Dal (Moong Dal)">Green Gram Dal (Moong Dal)</option>
+                                    <option value="Kabuli Chana (Chickpeas-White)">Kabuli Chana (Chickpeas-White)</option>
+                                    <option value="Kulthi (Horse Gram)">Kulthi (Horse Gram)</option>
+                                    <option value="Moath Dal">Moath Dal</option>
+                                </optgroup>
+                                <optgroup label="Vegetables">
+                                    <option value="Ashgourd">Ashgourd</option>
+                                    <option value="Board Beans">Beans</option>
+                                    <option value="Bitter gourd">Bitter gourd</option>
+                                    <option value="Bottle gourd">Bottle gourd</option>
+                                    <option value="Brinjal">Brinjal</option>
+                                    <option value="Cabbage">Cabbage</option>
+                                    <option value="Capsicum">Capsicum</option>
+                                    <option value="Carrot">Carrot</option>
+                                    <option value="Cluster beans">Cluster beans</option>
+                                    <option value="Coriander (Leaves)">Coriander (Leaves)</option>
+                                    <option value="Cauliflower">Cauliflower</option>
+                                    <option value="Drumstick">Drumstick</option>
+                                    <option value="Green Chilli">Green Chilli</option>
+                                    <option value="Onion">Onion</option>
+                                    <option value="Potato">Potato</option>
+                                    <option value="Pumpkin">Pumpkin</option>
+                                    <option value="Raddish">Raddish</option>
+                                    <option value="Snakeguard">Snakeguard</option>
+                                    <option value="Sweet Potato">Sweet Potato</option>
+                                    <option value="Tomato">Tomato</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                    </div>
+                    
+                    <div class="date-filters">
+                        <div class="date-range">
+                            <h4><i class="fas fa-calendar"></i> Date Range</h4>
+                            <div class="filter-section">
+                                <div class="filter-group">
+                                    <label for="start-date">Start Date:</label>
+                                    <input type="date" id="start-date" name="start-date">
+                                </div>
+                                <div class="filter-group">
+                                    <label for="end-date">End Date:</label>
+                                    <input type="date" id="end-date" name="end-date">
+                                </div>
+                            </div>
+                            <p class="helptext">Select a date range to download data for a specific period.</p>
+                        </div>
+                    
+                    <h3><i class="fas fa-file-export"></i> Export Options</h3>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <input type="radio" id="csv" name="format" value="csv" checked>
+                            <label for="csv">CSV <i class="fas fa-file-csv"></i></label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="excel" name="format" value="excel">
+                            <label for="excel">Excel <i class="fas fa-file-excel"></i></label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="json" name="format" value="json">
+                            <label for="json">JSON <i class="fas fa-file-code"></i></label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="download-btn">
+                        <i class="fas fa-download"></i> Download Data
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="static/script.js"></script>
+</body>
+</html>
