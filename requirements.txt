@@ -1,0 +1,12 @@
+Flask
+flask-cors
+pymongo
+werkzeug
+dash
+dash-bootstrap-components
+plotly
+pandas
+numpy
+scikit-learn
+xgboost
+requests
